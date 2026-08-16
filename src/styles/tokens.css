@@ -1,0 +1,20 @@
+:root {
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  color: #151428;
+  background: #f3eef6;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  --lavender: #a78bfa;
+  --soft-lavender: #f6e8ff;
+  --pink: #f9d7fb;
+  --coral: #ff8fa3;
+  --cream: #fff7f2;
+  --white: #ffffff;
+  --ink: #151428;
+  --muted: #6f6a85;
+  --active: #7a78fa;
+  --stroke: rgba(122, 120, 250, 0.14);
+  --shadow: 0 12px 28px rgba(103, 79, 139, 0.12);
+  --soft-shadow: 0 7px 18px rgba(103, 79, 139, 0.09);
+  --cta: linear-gradient(90deg, #a78bfa 0%, #ff8fa3 100%);
+}
