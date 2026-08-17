@@ -3,8 +3,8 @@ import bellIcon from '../assets/bell.svg'
 import menuIcon from '../assets/menu.svg'
 import plusIcon from '../assets/plus.svg'
 import arrowRight from '../assets/arrow-right.svg'
-import riceIcon from '../assets/rice.svg'
-import coffeeIcon from '../assets/coffee.svg'
+import breakfastIcon from '../assets/record-meal.svg'
+import lunchIcon from '../assets/rice.svg'
 import fireIcon from '../assets/fire.svg'
 import proteinIcon from '../assets/protein.svg'
 import waterIcon from '../assets/water.svg'
@@ -56,11 +56,11 @@ export default function HomePage({ onStartRecord, onLunch }) {
 
         <h2 className="home-records-title">今日の記録</h2>
         <GlassCard as="button" className="record-row home-breakfast" type="button" onClick={onLunch}>
-          <span className="record-row__label"><img src={riceIcon} alt="" />朝ごはん</span>
+          <span className="record-row__label"><img src={breakfastIcon} alt="" />朝ごはん</span>
           <span className="record-row__status">未記録<img src={arrowRight} alt="" /></span>
         </GlassCard>
         <GlassCard as="button" className="record-row home-lunch" type="button" onClick={onLunch}>
-          <span className="record-row__label"><img src={coffeeIcon} alt="" />昼ごはん</span>
+          <span className="record-row__label"><img src={lunchIcon} alt="" />昼ごはん</span>
           <span className="record-row__status">未記録<img src={arrowRight} alt="" /></span>
         </GlassCard>
       </section>

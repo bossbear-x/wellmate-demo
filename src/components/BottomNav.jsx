@@ -2,17 +2,19 @@ import homeActive from '../assets/nav-home-active.svg'
 import homeInactive from '../assets/nav-home-inactive.svg'
 import recordActive from '../assets/nav-record-active.svg'
 import recordInactive from '../assets/nav-record-inactive.svg'
+import statsActive from '../assets/nav-stats-active.svg'
 import statsInactive from '../assets/nav-stats-inactive.svg'
 import aiActive from '../assets/nav-ai-active.svg'
 import aiInactive from '../assets/nav-ai-inactive.svg'
+import userActive from '../assets/nav-user-active.svg'
 import userInactive from '../assets/nav-user-inactive.svg'
 
 const items = [
   { id: 'home', label: 'ホーム', activeIcon: homeActive, inactiveIcon: homeInactive },
   { id: 'record', label: '記録', activeIcon: recordActive, inactiveIcon: recordInactive },
-  { id: 'stats', label: '統計', activeIcon: statsInactive, inactiveIcon: statsInactive },
+  { id: 'stats', label: '統計', activeIcon: statsActive, inactiveIcon: statsInactive },
   { id: 'ai', label: 'AI', activeIcon: aiActive, inactiveIcon: aiInactive },
-  { id: 'profile', label: 'マイページ', activeIcon: userInactive, inactiveIcon: userInactive },
+  { id: 'profile', label: 'マイページ', activeIcon: userActive, inactiveIcon: userInactive },
 ]
 
 export default function BottomNav({ active, onNavigate }) {
@@ -23,15 +25,13 @@ export default function BottomNav({ active, onNavigate }) {
       <span className="bottom-nav__lens" style={{ transform: `translateX(${activeIndex * 69}px)` }} />
       {items.map((item) => {
         const isActive = active === item.id
-        const enabled = ['home', 'record', 'ai'].includes(item.id)
         return (
           <button
             key={item.id}
             className={`bottom-nav__item ${isActive ? 'is-active' : ''}`}
             type="button"
-            onClick={() => enabled && onNavigate(item.id)}
+            onClick={() => onNavigate(item.id)}
             aria-current={isActive ? 'page' : undefined}
-            aria-disabled={!enabled}
           >
             <img src={isActive ? item.activeIcon : item.inactiveIcon} alt="" />
             <span>{item.label}</span>
