@@ -9,12 +9,12 @@ import saladIcon from '../assets/salad.svg'
 import coffeeIcon from '../assets/coffee.svg'
 import beerIcon from '../assets/beer.svg'
 
-export default function MealListPage({ onBack, onAdd, saved = false }) {
+export default function MealListPage({ meals, onBack, onAdd, saved = false }) {
   const rows = [
-    { label: '朝ごはん', value: '520 kcal', icon: riceIcon },
-    { label: '昼ごはん', value: saved ? '520 kcal' : '未記録', icon: saladIcon, action: onAdd },
-    { label: '夕ごはん', value: '未記録', icon: coffeeIcon, action: onAdd },
-    { label: '間食・その他', value: '210 kcal', icon: beerIcon },
+    { id: 'breakfast', label: '朝ごはん', icon: riceIcon },
+    { id: 'lunch', label: '昼ごはん', icon: saladIcon, action: onAdd },
+    { id: 'dinner', label: '夕ごはん', icon: coffeeIcon, action: onAdd },
+    { id: 'snack', label: '間食・その他', icon: beerIcon },
   ]
 
   return (
@@ -49,8 +49,8 @@ export default function MealListPage({ onBack, onAdd, saved = false }) {
               aria-disabled={!row.action}
             >
               <span className="record-row__label"><img src={row.icon} alt="" />{row.label}</span>
-              <span className={`record-row__status ${saved && row.label === '昼ごはん' ? 'is-saved' : ''}`}>
-                {row.value}<img src={arrowRight} alt="" />
+              <span className={`record-row__status ${meals[row.id] ? 'is-saved' : ''}`}>
+                {meals[row.id] ? `${meals[row.id].kcal} kcal` : '未記録'}<img src={arrowRight} alt="" />
               </span>
             </GlassCard>
           ))}

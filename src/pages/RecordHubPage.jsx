@@ -11,7 +11,7 @@ const recordTypes = [
   { id: 'weight', title: '体重記録', detail: '体重の変化を記録', icon: weightIcon },
 ]
 
-export default function RecordHubPage({ onMeal }) {
+export default function RecordHubPage({ onMeal, onExercise, onWeight }) {
   return (
     <>
       <PageHeader title="記録" />
@@ -24,8 +24,7 @@ export default function RecordHubPage({ onMeal }) {
               className="record-type-card"
               type="button"
               key={item.id}
-              onClick={item.id === 'meal' ? onMeal : undefined}
-              aria-disabled={item.id !== 'meal'}
+              onClick={item.id === 'meal' ? onMeal : item.id === 'exercise' ? onExercise : onWeight}
             >
               <span className="record-type-card__icon"><img src={item.icon} alt="" /></span>
               <span className="record-type-card__copy"><strong>{item.title}</strong><small>{item.detail}</small></span>

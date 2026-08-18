@@ -4,12 +4,13 @@ import fireIcon from '../assets/fire.svg'
 import proteinIcon from '../assets/protein.svg'
 import waterIcon from '../assets/water.svg'
 import arrowRight from '../assets/arrow-right.svg'
-import { foodOptions, mealTypes } from '../data.js'
+import { calculateNutrition, formatNutrition, getSelectedFoods, mealTypes } from '../data.js'
 
 export default function MealReviewPage({ mealType, selectedFoods, onBack, onSave }) {
   const type = mealTypes.find((item) => item.id === mealType) ?? mealTypes[1]
-  const selected = foodOptions.filter((item) => selectedFoods.includes(item.id))
-  const foods = selected.length ? selected : foodOptions.filter((item) => ['rice', 'egg'].includes(item.id))
+  const foods = getSelectedFoods(selectedFoods)
+  const totals = calculateNutrition(foods)
+  const calorieProgress = Math.min((totals.kcal / 720) * 100, 100)
 
   return (
     <>
@@ -25,24 +26,24 @@ export default function MealReviewPage({ mealType, selectedFoods, onBack, onSave
             <h2>{type.label}</h2>
             <p>2024年6月20日 12:30</p>
           </div>
-          <img src={type.icon} alt="" />
         </div>
 
         <GlassCard className="review-calorie-card">
           <span>摂取カロリー</span>
-          <strong>520 <small>kcal</small></strong>
-          <div className="review-bar" aria-hidden="true"><span /></div>
+          <strong>{totals.kcal} <small>kcal</small></strong>
+          <small className="review-calorie-meta">1食の目安 720 kcal</small>
+          <div className="review-bar" aria-hidden="true"><span style={{ width: `${calorieProgress}%` }} /></div>
         </GlassCard>
 
         <div className="macro-grid" aria-label="栄養バランス">
           <GlassCard className="macro-card">
-            <img src={proteinIcon} alt="" /><span>たんぱく質</span><strong>24 g</strong>
+            <img src={proteinIcon} alt="" /><span>たんぱく質</span><strong>{formatNutrition(totals.protein)} <small>g</small></strong><em>目標 60g</em>
           </GlassCard>
           <GlassCard className="macro-card">
-            <img src={fireIcon} alt="" /><span>脂質</span><strong>14 g</strong>
+            <img src={fireIcon} alt="" /><span>脂質</span><strong>{formatNutrition(totals.fat)} <small>g</small></strong><em>目標 45g</em>
           </GlassCard>
           <GlassCard className="macro-card">
-            <img src={waterIcon} alt="" /><span>炭水化物</span><strong>62 g</strong>
+            <img src={waterIcon} alt="" /><span>炭水化物</span><strong>{formatNutrition(totals.carbs)} <small>g</small></strong><em>目標 90g</em>
           </GlassCard>
         </div>
 
@@ -50,7 +51,7 @@ export default function MealReviewPage({ mealType, selectedFoods, onBack, onSave
         <div className="review-food-list">
           {foods.map((food) => (
             <GlassCard className="review-food-row" key={food.id}>
-              <span><img src={food.icon} alt="" /><strong>{food.label}</strong></span>
+              <span><img src={food.icon} alt="" /><strong>{food.name}</strong></span>
               <span>{food.kcal} kcal<img src={arrowRight} alt="" /></span>
             </GlassCard>
           ))}

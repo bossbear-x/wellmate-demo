@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './styles/tokens.css'
 import './styles/app.css'
+import './styles/qa-fixes.css'
+import './styles/portfolio-final.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

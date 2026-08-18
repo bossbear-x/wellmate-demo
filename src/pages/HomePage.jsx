@@ -16,7 +16,12 @@ const summary = [
   { label: '水分', value: '1.2', unit: '/ 2.0 L', icon: waterIcon },
 ]
 
-export default function HomePage({ onStartRecord, onLunch }) {
+export default function HomePage({ meals, onStartRecord, onLunch, onNotifications, onProfile }) {
+  const records = [
+    { id: 'breakfast', label: '朝ごはん', icon: breakfastIcon },
+    { id: 'lunch', label: '昼ごはん', icon: lunchIcon },
+  ]
+
   return (
     <>
       <header className="home-header">
@@ -25,10 +30,10 @@ export default function HomePage({ onStartRecord, onLunch }) {
           <strong>こんにちは、Helenさん</strong>
         </div>
         <div className="home-header__actions">
-          <button className="circle-button" type="button" aria-label="通知">
+          <button className="circle-button" type="button" aria-label="通知" onClick={onNotifications}>
             <img src={bellIcon} alt="" />
           </button>
-          <button className="circle-button" type="button" aria-label="メニュー">
+          <button className="circle-button" type="button" aria-label="メニュー" onClick={onProfile}>
             <img src={menuIcon} alt="" />
           </button>
         </div>
@@ -55,14 +60,17 @@ export default function HomePage({ onStartRecord, onLunch }) {
         </div>
 
         <h2 className="home-records-title">今日の記録</h2>
-        <GlassCard as="button" className="record-row home-breakfast" type="button" onClick={onLunch}>
-          <span className="record-row__label"><img src={breakfastIcon} alt="" />朝ごはん</span>
-          <span className="record-row__status">未記録<img src={arrowRight} alt="" /></span>
-        </GlassCard>
-        <GlassCard as="button" className="record-row home-lunch" type="button" onClick={onLunch}>
-          <span className="record-row__label"><img src={lunchIcon} alt="" />昼ごはん</span>
-          <span className="record-row__status">未記録<img src={arrowRight} alt="" /></span>
-        </GlassCard>
+        {records.map((record) => {
+          const meal = meals[record.id]
+          return (
+            <GlassCard as="button" className={`record-row home-${record.id}`} type="button" onClick={onLunch} key={record.id}>
+              <span className="record-row__label"><img src={record.icon} alt="" />{record.label}</span>
+              <span className={`record-row__status ${meal ? 'is-saved' : ''}`}>
+                {meal ? `${meal.kcal} kcal` : '未記録'}<img src={arrowRight} alt="" />
+              </span>
+            </GlassCard>
+          )
+        })}
       </section>
     </>
   )

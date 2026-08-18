@@ -4,7 +4,7 @@ import searchIcon from '../assets/search.svg'
 import micIcon from '../assets/mic.svg'
 import { foodOptions, mealTypes } from '../data.js'
 
-export default function AddMealPage({ mealType, selectedFoods, onMealType, onFood, onBack, onNext }) {
+export default function AddMealPage({ mealType, selectedFoods, onMealType, onFood, onBack, onNext, onSearch }) {
   return (
     <>
       <PageHeader
@@ -43,14 +43,14 @@ export default function AddMealPage({ mealType, selectedFoods, onMealType, onFoo
                 aria-pressed={selected}
               >
                 <img src={item.icon} alt="" />
-                <span>{item.label}</span>
+                <span>{item.name}</span>
               </button>
             )
           })}
         </div>
 
         <div className="meal-search-row">
-          <GlassCard className="search-field">
+          <GlassCard as="button" type="button" className="search-field" onClick={onSearch}>
             <img src={searchIcon} alt="" /><span>食品名を検索</span>
           </GlassCard>
           <button className="voice-button" type="button" aria-label="音声入力">
