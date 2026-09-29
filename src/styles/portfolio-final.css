@@ -303,15 +303,15 @@ body {
 @media (min-width: 431px) {
   .app-scale-wrapper {
     display: flex;
-    width: 381.21px;
-    height: 826.44px;
+    width: 403.76px;
+    height: 875.33px;
     align-items: center;
     justify-content: center;
   }
 
   .app-scale-wrapper > .phone-shell {
     flex: 0 0 393px;
-    transform: scale(.97) !important;
+    transform: scale(1.0274) !important;
     transform-origin: center center !important;
   }
 }
