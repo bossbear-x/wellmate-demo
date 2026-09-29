@@ -270,3 +270,59 @@
 @media (prefers-reduced-motion: reduce) {
   .food-scan-line { animation:none; transform:translateY(73px); }
 }
+
+/* Desktop presentation stage: center the scaled App as one visual unit. */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(249, 215, 251, .9), transparent 36%),
+    radial-gradient(circle at 82% 76%, rgba(167, 139, 250, .28), transparent 38%),
+    #f4eff7;
+}
+
+.portfolio-stage {
+  display: grid !important;
+  min-height: 100dvh !important;
+  height: auto !important;
+  padding: clamp(32px, 5vh, 64px) clamp(32px, 5vw, 80px) !important;
+  place-items: center !important;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(249, 215, 251, .9), transparent 36%),
+    radial-gradient(circle at 82% 76%, rgba(167, 139, 250, .28), transparent 38%),
+    #f4eff7;
+}
+
+@media (min-width: 431px) {
+  .app-scale-wrapper {
+    display: flex;
+    width: 345.84px;
+    height: 749.76px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-scale-wrapper > .phone-shell {
+    flex: 0 0 393px;
+    transform: scale(.88) !important;
+    transform-origin: center center !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .portfolio-stage {
+    padding: 0 !important;
+  }
+
+  .app-scale-wrapper {
+    width: 100vw;
+    height: 100dvh;
+  }
+}

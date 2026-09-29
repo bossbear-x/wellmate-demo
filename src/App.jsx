@@ -181,7 +181,8 @@ export default function App() {
 
   return (
     <div className="portfolio-stage" data-screen={screen} data-demo={demoEnabled ? 'on' : 'off'}>
-      <PhoneShell activeNav={activeNav} onNavigate={navigate} showStatus={screen !== 'splash'} showNav={showNav}>
+      <div className="app-scale-wrapper">
+        <PhoneShell activeNav={activeNav} onNavigate={navigate} showStatus={screen !== 'splash'} showNav={showNav}>
         {isLaunch ? <LaunchPage screen={screen} onNext={nextLaunch} /> : null}
         {screen === 'home' ? <HomePage meals={savedMeals} onStartRecord={() => setScreen('record')} onLunch={() => setScreen('meal-list')} onNotifications={() => setScreen('notifications')} onProfile={() => setScreen('profile')} /> : null}
         {screen === 'record' ? <RecordHubPage onMeal={() => setScreen('meal-list')} onExercise={() => openExercise('record')} onWeight={() => openWeight('record')} /> : null}
@@ -221,7 +222,8 @@ export default function App() {
         {screen === 'ai' ? <AiCoachPage view="overview" selectedQuestion={selectedQuestion} onQuestion={openQuestion} onInsights={() => setScreen('ai-insights')} /> : null}
         {screen === 'ai-insights' ? <AiCoachPage view="insights" selectedQuestion={selectedQuestion} onBack={() => setScreen('ai')} /> : null}
         {screen === 'ai-chat' ? <AiCoachPage view="chat" selectedQuestion={selectedQuestion} onBack={() => setScreen('ai')} onInsights={() => setScreen('ai-insights')} /> : null}
-      </PhoneShell>
+        </PhoneShell>
+      </div>
 
       {controlsEnabled && demoEnabled ? (
         <button className="demo-replay" type="button" onClick={() => setDemoRun((value) => value + 1)}>
