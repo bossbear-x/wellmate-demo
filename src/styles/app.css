@@ -944,7 +944,8 @@ img {
 
 @media (max-height: 900px) {
   .phone-shell {
-    transform: scale(.9);
+    /* MUSUBI reference at 1440 × 852: 359.18 × 773.06 rendered px. */
+    transform: scale(.91394, .90734);
     transform-origin: top center;
   }
 
